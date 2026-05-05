@@ -5,28 +5,25 @@ import io.github.resilience4j.retry.annotation.Retry;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
-import pt.com.aubay.userservice.client.WireMockUserClient;
+import pt.com.aubay.userservice.client.UserProfileClient;
 import pt.com.aubay.userservice.model.dto.UserProfileResponse;
 import pt.com.aubay.userservice.service.factory.UserProfileFallbackFactory;
-
-import java.math.BigDecimal;
-import java.util.List;
 
 @Service
 @Slf4j
 public class UserProfileClientService {
-  private final WireMockUserClient wireMockUserClient;
+  private final UserProfileClient userProfileClient;
 
-  public UserProfileClientService(WireMockUserClient wireMockUserClient) {
-    this.wireMockUserClient = wireMockUserClient;
+  public UserProfileClientService(UserProfileClient userProfileClient) {
+    this.userProfileClient = userProfileClient;
   }
 
   @Cacheable(cacheNames = "userProfiles", key = "#userId")
-  @Retry(name = "wiremockUser")
-  @CircuitBreaker(name = "wiremockUser", fallbackMethod = "fallback")
+  @Retry(name = "userProfile")
+  @CircuitBreaker(name = "userProfile", fallbackMethod = "fallback")
   public UserProfileResponse getProfile(String userId) {
     log.info("Fetching user profile for userId={}", userId);
-    return wireMockUserClient.getProfile(userId);
+    return userProfileClient.getProfile(userId);
   }
 
   public UserProfileResponse fallback(String userId, Throwable ex) {

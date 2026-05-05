@@ -6,10 +6,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import pt.com.aubay.userservice.model.dto.UserProfileResponse;
 
 @FeignClient(
-        name = "wiremock-user-client",
-        url = "${external.wiremock.base-url}"
+        name = "user-profile-client",
+        url = "${external.user-profile.base-url}"
 )
-public interface WireMockUserClient {
+public interface UserProfileClient {
 
     @GetMapping("/api/users/{userId}/profile")
     UserProfileResponse getProfile(@PathVariable String userId);

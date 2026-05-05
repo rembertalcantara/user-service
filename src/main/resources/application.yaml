@@ -16,11 +16,11 @@ management:
   endpoints.web.exposure.include: health,info,metrics,prometheus,circuitbreakers
   tracing.sampling.probability: 1.0
 external:
-  wiremock.base-url: ${WIREMOCK_BASE_URL:http://localhost:8089}
+  user-profile.base-url: ${USER_PROFILE_BASE_URL:http://localhost:8089}
 resilience4j:
-  retry.instances.wiremockUser:
+  retry.instances.userProfile:
     max-attempts: 2
     wait-duration: 200ms
-  circuitbreaker.instances.wiremockUser:
+  circuitbreaker.instances.userProfile:
     sliding-window-size: 10
     failure-rate-threshold: 50

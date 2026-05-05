@@ -1,0 +1,26 @@
+server:
+  port: 8081
+spring:
+  application.name: @project.name@
+  security.user.name: ${BASIC_USER}
+  security.user.password: ${BASIC_PASSWORD}
+  threads.virtual.enabled: ${THREADS_VIRTUAL_ENABLED}
+  cache:
+    type: caffeine
+    cache-names: ${CACHE_NAMES}
+    caffeine.spec: ${CAFFEINE_SPEC}
+management:
+  endpoints.web.exposure.include: ${ENDPOINTS_WEB_EXPOSURE_INCLUDE}
+  tracing.sampling.probability: ${TRACING_SAMPLING_PROBABILITY}
+external:
+  wiremock.base-url: ${WIREMOCK_BASE_URL}
+resilience4j:
+  retry.instances.wiremockUser:
+    max-attempts: ${MAX_ATTEMPTS}
+    wait-duration: ${WAIT_DURATION}
+  circuitbreaker.instances.wiremockUser:
+    sliding-window-size: ${SLIDING_WINDOW_SIZE}
+    failure-rate-threshold: ${FAILURE_RATE_THRESHOLD}
+otel:
+  service.name: ${SERVICE_NAME}
+  exporter.otlp.endpoint: ${OTEL_EXPORTER_OTLP_ENDPOINT}

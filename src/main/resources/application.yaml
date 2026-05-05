@@ -1,0 +1,26 @@
+server:
+  port: 8081
+spring:
+  application.name: @project.name@
+  security.user.name: ${BASIC_USER:admin}
+  security.user.password: ${BASIC_PASSWORD:admin123}
+  threads.virtual.enabled: true
+  cache:
+    type: caffeine
+    cache-names: userProfiles
+    caffeine.spec: maximumSize=10000,expireAfterWrite=7d
+  jackson:
+    mapper:
+      accept-case-insensitive-enums: true
+management:
+  endpoints.web.exposure.include: health,info,metrics,prometheus,circuitbreakers
+  tracing.sampling.probability: 1.0
+external:
+  wiremock.base-url: ${WIREMOCK_BASE_URL:http://localhost:8089}
+resilience4j:
+  retry.instances.wiremockUser:
+    max-attempts: 2
+    wait-duration: 200ms
+  circuitbreaker.instances.wiremockUser:
+    sliding-window-size: 10
+    failure-rate-threshold: 50

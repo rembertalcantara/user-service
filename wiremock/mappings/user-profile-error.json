@@ -13,7 +13,7 @@
     },
     "jsonBody": {
       "error": "Internal Server Error",
-      "message": "{{randomValue values='Database connection failed,User profile service temporarily unavailable,Internal system error'}}",
+      "message": "{{pickRandom 'Database connection failed' 'User profile service temporarily unavailable' 'Internal system error'}}",
       "timestamp": "{{now format='yyyy-MM-dd'}}T{{now format='HH:mm:ss'}}Z",
       "userId": "{{request.pathSegments.[2]}}"
     },

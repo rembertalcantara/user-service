@@ -37,7 +37,7 @@
       "purchaseHistory": {
         "totalOrders": "{{randomInt lower=5 upper=50}}",
         "averageOrderValue": "{{randomDecimal min=50.0 max=300.0}}",
-        "lastPurchaseDate": "2024-{{randomInt lower=1 upper=12}}-{{randomInt lower=1 upper=28}}",
+        "lastPurchaseDate": "{{now format='yyyy-MM-dd'}}",
         "favoriteCategories": [
           "{{pickRandom 'electronics' 'clothing' 'books' 'home' 'sports'}}",
           "{{pickRandom 'electronics' 'clothing' 'books' 'home' 'sports'}}"

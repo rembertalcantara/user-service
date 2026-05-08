@@ -1,19 +1,20 @@
 package pt.com.aubay.userservice.controller;
 
 import org.junit.jupiter.api.Test;
+import pt.com.aubay.userservice.controller.impl.UserProfileControllerImpl;
 import pt.com.aubay.userservice.model.dto.UserProfileResponse;
 import pt.com.aubay.userservice.service.UserProfileClientService;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.*;
 
-class UserProfileControllerTest {
+class UserProfileControllerImplTest {
 
     private final UserProfileClientService client =
             mock(UserProfileClientService.class);
 
-    private final UserProfileController controller =
-            new UserProfileController(client);
+    private final UserProfileControllerImpl controller =
+            new UserProfileControllerImpl(client);
 
     @Test
     void shouldGetProfile() {

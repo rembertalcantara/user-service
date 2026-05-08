@@ -1,9 +1,8 @@
 services:
-  user-service:
+  service:
+    container_name: user
     build:
       context: .
-    environment:
-      USER_PROFILE_BASE_URL: http://wiremock:8080
     ports: ["8081:8081"]
 
 

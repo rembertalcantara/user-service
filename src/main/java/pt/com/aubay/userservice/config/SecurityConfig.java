@@ -12,7 +12,7 @@ public class SecurityConfig {
   @Bean
   SecurityFilterChain security(HttpSecurity http) throws Exception {
     return http.csrf(AbstractHttpConfigurer::disable)
-        .authorizeHttpRequests(auth -> auth.requestMatchers("/actuator/health", "/swagger-ui/**", "/v3/api-docs/**").permitAll().anyRequest().authenticated())
+        .authorizeHttpRequests(auth -> auth.requestMatchers("/actuator/health", "/actuator/health/**", "/swagger-ui/**", "/v3/api-docs/**").permitAll().anyRequest().authenticated())
         .httpBasic(Customizer.withDefaults()).build();
   }
 }
